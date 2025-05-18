@@ -1,4 +1,17 @@
+# Ignore Docker volumes
+docker-volumes/
+# Ignore node modules
 node_modules
+
+# Ignore build/output
+dist/
+build/
+
+# Ignore environment/config
+.env
+*.env
+
+# Ignore OS-specific files
+Thumbs.db
 *.log
 .store
-build
