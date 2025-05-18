@@ -4,8 +4,8 @@ docker-volumes/
 node_modules
 
 # Ignore build/output
-dist/
-build/
+dist
+build
 
 # Ignore environment/config
 .env
