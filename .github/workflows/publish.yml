@@ -1,0 +1,31 @@
+name: Publish
+
+# Controls when the workflow will run kudrat
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@Kudrat702'
+      - run: npm install
+      - run: npm run build
+      - run: npm publish
+        if: github.event_name == 'push'
+        working-directory: ./build
+        env:
+          NPM_TOKEN : ${{ secrets.GITHUB_TOKEN }}
